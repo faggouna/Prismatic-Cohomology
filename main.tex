@@ -1,0 +1,236 @@
+\input{preamble.tex}
+\usepackage{adjustbox}
+\bibliography{ref.bib}
+\usepackage[final]{hyperref}
+\title{Etale Cohomology}
+\author{Arnab Kundu}
+\date{22 October 2019}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\section{Motivation}
+Let $X$ be a smooth projective variety of dimension $N$ over a finite field $\F_q$. We can base change and view $X$ as a variety over extensions of $\F_q$. Define $N_r\coloneqq \#|X(\F_{q^r})|$. We define a logarithmic generating function defined by these $N_r$'s as follows:
+\begin{teqn}
+\displaystyle F(T)=\sum_{r\ge 1} \frac{N_r}{r}T^r.
+\end{teqn}
+Define the zeta function of $X$ to be $ Z(T) = \exp(F(T))$ where $\exp(.)$ is the formal exponential.
+\begin{conj}[Weil Conjecture]
+In the above situation we have
+\begin{itemize}
+\item (Rationality) $Z(T)$ is a rational polynomial.
+\item (Functional Equation) $Z(1/q^NT)=\pm q^{N\chi}t^{\chi}Z(T)$.
+\item (Riemann Hypothesis)
+\begin{teqn}
+\displaystyle Z(T) = \frac{P_1(T)\cdots P_{2N-1}(T)}{P_0(T)\cdots P_{2N}(T)}.
+\end{teqn}
+where $P_r(T)$ is an integer polynomial of degree $b_r$. If $\alpha_{r}$ is a root of $P_r$ then it has absolute value $q^{r/2}$.
+\end{itemize} 
+\end{conj}
+\begin{exmp}\label{exmp:calculation P^n}
+Take $X=\p^N$. Then we can calculate that \begin{teqn}\displaystyle N_r=\frac{q^{(r+1)N}-1}{q^{r}-1}.\end{teqn} From a simple calculation we get that \begin{teqn}\displaystyle Z(T)=\frac{1}{(1-T)(1-qT)\cdots(1-q^NT))}.\end{teqn}
+\end{exmp}
+\begin{com}
+Let $X/K$ be a smooth projective variety over a number field $K$ with a fixed embedding $K\hookrightarrow\C$. Then we have a nice Betti cohomology theory defined over the analytification $X_{\C}^{\an}$ of $X$. We have the Betti numbers $b_i=\dim_{\Q} H^{i}_{Betti}(X_{\C}^{\an}, \Q)$. And we define the Euler characteristic $\chi=\sum_{i\ge 0}(-1)^ib_i$. We have the Lefschetz fixed point theorem.
+\begin{thm}
+Suppose that we have self-map $F:X\to X$ which has isolated and finite fixed points. Then the number of fixed points \begin{teqn}\#|Fix(F)|=\sum_{i=0}^{2N} (-1)^i \tr(\pullback{F}:H^i(X_{\C}^{\an}, \Q)\to H^i(X_{\C}^{\an}, \Q)).\end{teqn}
+\end{thm}
+Weil believed that there was a cohomology theory for varieties over finite fields completely analogous to the Betti cohomology theory for complex varieties. He believed that the suitable cohomology would have the desirable properties which would make the application of Lefschetz fixed point theorem possible. Henceforth let us assume that $X/{\F_q}$ is a smooth projective variety. Suppose $H^i(X,\Q)$ is a suitable candidate of cohomology with rational coefficients. Notice that there is the well known Frobenius morphism\begin{teqn}\sigma:X_{\bar{\F}_q} \arrow[r] & X_{\bar{\F}_q}\\x\arrow[r,|->] & x^q.\end{teqn} Notice that this is in fact a morphism of $\F_{q}$ schemes. By composition we get a morphism $\sigma^r=\sigma_r:X_{\bar{\F}^q}\to X_{\bar{\F}_q}$ of $\F_{q^r}$ schemes. The set of fixed points of this action is $|Fix(\sigma_r)|=|X(\F_{q^r})|$ and therefore has cardinality $N_r$. This action passes down to the cohomology as $\sigma_r:H^i(X_{\bar{\F}_q},\Q)\to H^i(X_{\bar{\F}_q},\Q)$. Therefore $\sigma_r$ is a linear operator on a finite dimensional $\Q$ vector space. Suppose that the dimension of $\dim H^i(X_{\bar{\F}_q},\Q)$ is $b_i$. Let $\alpha_{1i},\ldots,\alpha_{b_ii}$ be the complex eigenvalues of $\sigma$ which has $Q_i(T)$ as the characteristic polynomial. This implies that $N_r$ is \begin{teqn}\displaystyle N_r = \sum_{r=0}^{2N}(-1)^i(\alpha_{1i}^r+\cdots+\alpha_{ib_i}^r).\end{teqn}Then by a similar calculation as in Example \ref{exmp:calculation P^n} we can check that the zeta function is in fact \begin{teqn}Z(T)=T^{-\chi}\frac{Q_1\br{\frac{1}{T}}\cdots Q_{2N-1}\br{\frac{1}{T}}}{Q_0\br{\frac{1}{T}}\cdots Q_{2N}\br{\frac{1}{T}}}.\end{teqn} The rationality of the zeta function follows from this as well. The study of the roots $\alpha$'s will then shed light on the other parts of the conjecture. This seems like a viable plan. 
+\end{com}
+For more details on Weil conjecture and the proof of Deligne check \cite{katz_deligne}.
+This motivates us to define a notion of a good cohomology theory. 
+\begin{defn}[Weil Cohomology Theory] Fix a field $k$ of characteristic $p$.
+We want a functor \begin{teqn}\{\Sch/k\}\arrow[r]&\{\text{ Graded }\Q\text{-algebras }\}\\ X \arrow[r, |->]& \bigoplus H^{i}(X_{\bar{k}},\Q)\end{teqn}
+with the following properties for any smooth projective variety $X/k$:
+\begin{enumerate}
+\item The cohomology is supported on $[0,2N]$.
+\item The $\Q$-vector space $H^{i}(X_{\bar{k}},\Q)$ is finite dimensional. 
+\item The cohomologies $H^0(X_{\bar{k}}, \Q)=\Q=H^{2N}(X_{\bar{k}}, \Q)$.
+\item (Poincare duality) There is a perfect pairing \begin{teqn}H^i(X_{\bar{k}}, \Q)\times H^{2N-i}(X_{\bar{k}}, \Q)\to\Q.\end{teqn}
+\item Kunneth formula and Lefschetz axioms.
+\end{enumerate}
+\end{defn}
+\begin{rem}
+According to Weil, the poincare duality should imply the functional equation of the zeta function.
+\end{rem}
+%Subsection Proposals
+\subsection{Proposals}
+\begin{com}[Zariski Sheaf Cohomology Theory]
+Assume $X/k$ as above. Given a coherent sheaf we have a theory of sheaf cohomology. We take it as the first candidate. However we have the following theorems:
+\begin{thm}[Grothendieck Vanishing]
+Let $Z$ be a noetherian topological space. Given any sheaf $\cH$ we have that $H^{i}_{\zar}(Z,\cH)$ vanishes for $i>\dim(Z)$.
+\end{thm}
+\begin{prop}
+Let $\cF$ be a constant sheaf on $X$. Then $H^{i}_{zar}(X, \cF)$  vanishes for $i>0$.
+\end{prop}
+The above proposition can be proved by \u{C}ech cohomology. For example in the case of $X=\p^1_k$ we can choose the two standard open affine covers to deduce the result. (We need to use the fact that the intersection of the affine opens is connected.) 
+\end{com}
+The reason why the second failure is relevant is because we want to build a nice theory of cohomology of constant, or in general locally constant sheaves. The sheaf theoretic analog of cohomology with rational coefficients is the cohomology of constant shaves. Thus the failure makes it impossible to apply the Lefschetz principle. 
+\begin{com}
+The second idea (due to M. Artin and A. Grothendieck) is to add more opens! Basically the second failure is due to the fact that there are very few opens and the opens sets are very large(for example dense in $X$). We could resolve this issue if we had analogues of inverse function theorem. In that case the cohomology would not render trivial vanishing like the above.  
+\end{com} 
+There is another problem due to Serre. There can not be any rational cohomology theory because there is an elliptic curve with the said automorphism.....
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Etale Cohomology}
+\par Given an $S$-scheme $X$ we denote the big fppf, small \'etale, small finite \'etale and small Zariski sites by $X_{\fppf}, X_{\et}, X_{\fet}$ and $X_{zar}$ respectively. From now on we fix this base $S$ and the scheme $X/S$.
+
+%Subsection Comparison of topologies
+\subsection{Comparison of toplogies}
+A group scheme is a group object in the category $\Sch/S$ of schemes over $S$.  We add adjectives to it to signify that the underlying scheme has those adjectives: for example finite, flat, \'etale and smooth. We have the notion of constant group schemes like $\Z/n\Z_{S}$ whose functor of points is the constant functor taking the value of abelian group $\Z/n\Z$. Along with their pontraygin duals $\mu_{n,S}$ they form an important class of finite flat group schemes. The study of finite flat group schemes is central in the study of \'etale cohomology. We have the following theorems:
+\begin{thm}[Hilbert Theorem 90]
+Let $\G_m$ be the multiplicative group. Then there is a canonical isomorphism of cohomologies \begin{teqn}H^{1}_{\fppf}(X,\G_m)\cong H^1_{\et}(X,\G_m)\cong H^1_{\zar}(X, \G_m)\cong Pic(X).\end{teqn}
+\end{thm}
+For this section the standard reference is \cite[Milne III.3]{milne_etale_cohomology}.
+\begin{prop}
+Let $\cF$ be a quasi-coherent $\cO_X$-module. Then there is a canonical isomorphism \begin{teqn}H^{i}_{\fppf}(X,\cF)\cong H^{i}_{\et}(X,\cF)\cong H^{i}_{\fppf}(X,\cF).\end{teqn}
+\end{prop} 
+\begin{thm}
+If $G$ is a smooth, quasi-projective, commutative group scheme over $X$ then there is a canonical isomorphism \begin{teqn}H^{i}_{\fppf}(X,G)\cong H^{i}_{\et}(X,G).\end{teqn}
+\end{thm}
+Let $k$ be any field with a chosen separable closure $k\hookrightarrow\sep{k}$ and absolute Galois group $G_k$. We notice from the definition of \'etale morphisms, that any \'etale morphism to $\spec k$ is in fact finite and hence finite \'etale over $\spec k$. This implies(almost!) that there is an equivalence of sites \begin{teqn}\label{eqn:equivalence-etale-finite-etale-field}\br{\spec k}_{\et}\cong\br{\spec k}_{\fet}.\end{teqn} Notice that the cohomology $H^r_{\fet}(k, \cF)$ of any sheaf $\cF$ on $\br{\spec k}_{\fet}$ is just the galois cohomology $H^r_{\Gal}(G_k,\cF(\sep{k}))$. This can be seen by choosing the geometric point $k\hookrightarrow\sep{k}$ and looking at the Galois action at the stalk of the sheaf at this geometric point. Notice that from the above equivalence \ref{eqn:equivalence-etale-finite-etale-field} we have that \begin{teqn}H^r_{\et}(k,\cF)\cong H^{r}_{\Gal}(G_k,\cF(\sep{k})).\end{teqn}
+
+%Subsection Etale Fundamental GRoup
+\subsection{Etale Fundamental Group}
+For this section check \cite{tsimerman_etale_fundamental_group}.
+The \'etale fundamental group is a profinite group that parametrises the finite \'etale coverings.
+\begin{exmp}
+Let $k$ be any field with a chosen separable closure $k\hookrightarrow\sep{k}$. Then there is a canonical isomorphism of profinite groups $\Gal(\sep{k}/k)\cong\pi_1^{\et}(\spec k)$.
+\end{exmp}
+The theorem below roughly says that the fundamental group parametrises the finite locally constant sheaves. This is related to the fact that the fundamental group parametrises the finite \'etale covers.
+\begin{thm}
+Given a scheme $X/S$ we have a canonical isomorphism \begin{teqn}H^1_{\et}(X,\Z/n\Z)\cong\Hom(\pi_1^{\et}(X),\Z/n\Z)\end{teqn} for any positive integer $n$.
+\end{thm}
+Let $X$ be a smooth variety over $\C$. 
+\begin{thm}
+There are canonical isomorphisms \begin{teqn}(\pi_1(X^{\an}))^{\text{pro}}\cong\pi^{\et}_1(X),\end{teqn} \begin{teqn}H^{1}_{Betti}(X^{an},\Z/n\Z)\cong H^1_{\et}(X,\Z/n\Z)\end{teqn} for any positive integer $n$.
+\end{thm}
+\begin{exmps}
+This gives us a few examples of \'etale cohomology groups.
+\begin{itemize}
+\item $\pi_1^{\et}(\A_{\C}^1)=\{0\}$,
+\item $\pi_1^{\et}(\p^1_{\C})=\{0\}$,
+\item and $\pi_1^{\et}(E)=\hat{\Z}^2$ for any elliptic curve $E/\C$.
+\end{itemize}
+\end{exmps}
+For calculations check \cite{tsimerman_etale_fundamental_calculations}.
+%Subsection Basic Arithmetic Properties
+\subsection{Basic Arithmetic Properties}
+Reference for this section is \cite[Milne V.1]{milne_etale_cohomology}.
+\begin{defn}
+An $\ell$-adic sheaf $\cF$ is a formal sheaf which is an compatible inverse system $\{(\cF_{n},\phi_{n-1})\}$ where $\cF_n$ is a sheaf of $\Z/\ell^n\Z$-modules and \begin{teqn}\phi_{n}:\cF_{n+1}\otimes_{\Z/\ell^{n+1}\Z}\Z/\ell^n\Z\xrightarrow{\sim}\cF_n\end{teqn} is an isomorphism.
+The cohomology of an $\ell$-adic sheaf is defined to be \begin{teqn}H^{r}_{\et}(X,\cF)=\lim_n H^r_{\et}(X,\cF_n).\end{teqn} This is naturally a $\Z_{\ell}$-module given that the $n$-th factor of the limit is a  $\Z/\ell^n\Z$-module. We have a canonical $\Z_{\ell}$-sheaf as $\{\Z/\ell^n\Z\}$ with the obvious maps. We define the $\Z_{\ell}$ and $\Q_{\ell}$ cohomology to be \begin{teqn}H^r_{\et}(X,\Z_{\ell})=\lim_n H^r_{\et}(X,\Z/\ell^n\Z), \\H^r_{\et}(X,\Q_{\ell})=H^r_{\et}(X,\Z_{\ell})\otimes_{\Z_{\ell}}\Q_{\ell}.\end{teqn}
+\end{defn}
+Given a scheme $X$ over a field $k$ we have a natural Galois action of $G_k$ on $H^r_{\et}(X_{\bar{k}}, \cF))$ for any sheaf $\cF$ induced by the action of $G_k$ on $X_{\bar{k}}\to k$.
+\begin{defn}[Tate twists]
+Given a scheme $X$ we define a bunch of sheaves on $X_{\et}$ as follows \begin{teqn}\Z/n\Z(r)=\begin{cases}\mu_n^{\otimes r}, \text{ if }r>0\\ \Z/n\Z, \text{ if }r=0\\ \Hom(\Z/n\Z(-r),\Z/n\Z), \text{ if }r<0.\end{cases}\end{teqn} Given a sheaf $\cF$ on $X_{\et}$ of $\Z/n\Z$-modules we define the Tate twist $\cF(r)=\cF\otimes\Z/n\Z(r)$. We define $\Z_{\ell}(r)$ to be the $\ell$-adic system of sheaves $\{\Z/\ell^n\Z(r)\}$. Similarly for an $\ell$-adic sheaf $\cF$ we define the Tate twist to be $\cF\otimes\Z_{\ell}(r)$.
+\end{defn}
+\begin{prop}
+Let $X/k$ be a scheme. There is a natural isomorphism \begin{teqn}H^r_{\et}(X_{\bar{k}},\cF(r))\cong H^r_{\et}(X_{\bar{k}},\cF)(r).\end{teqn}
+\end{prop} 
+The above needs some explanation. It is true in the case of $\Z/n\Z$-sheaves as well as $\ell$-adic sheaves.
+\begin{enumerate}
+\item Let $\cF$ be a sheaf of $\Z/n\Z$-modules. We can canonically give $\mu_n(\sep{k})$ a structure of a $G_k$-module. Thus we have a $G_k$-module structure on $\Z/n\Z(r)(\sep{k})$ acting diagonally. Define the Tate twist of $M$ a $G_k$-module to be the module $M\otimes_{\Z/n\Z}\Z/n\Z(r)$ with the diagonal action.  
+\item Let $\cF$ be an $\ell$-adic sheaf. Similarly $\ell$-adic sheaf $\Z_{\ell}(r)$ obtains a structure of a $G_k$-module. Define similarly the Tate twist of $M$ to be $M\otimes_{\Z_{\ell}}\Z_{\ell}(r)$. 
+\end{enumerate} 
+\begin{prop}
+Let $X/k$ be a scheme over a finite field of characteristic $p$. Suppose there is a lift $\fX/\cO_K$ of $X$ over the ring of integers of a local field $K/\Q_p$. Let $\fX_K/K$ be the generic fibre. Then $H^{r}(\fX_{\bar{K}},\Z_{\ell})$ is an unramified $G_K$ module for any $\ell\neq p$. 
+\end{prop}
+\begin{teqn}X\arrow[d]\arrow[r] & \fX\arrow[d] & \fX_K\arrow[d]\arrow[l] \\ \spec k\arrow[r, hook] & \spec\cO_K &\spec K\arrow[l, hook]\end{teqn}
+\begin{exmp}
+Let $X/\F_{q}$ be an elliptic curve. Then we have a lift $\fX/\cO_K$ where $K/\Q_p$ is the unramified extension with residue field $\F_q$. Then $T_{\ell}(\fX_K)\cong T_{\ell}(X)$ is an unramified $G_K$-module.
+\end{exmp}
+
+%Subsection Bckground Material
+\subsection{Background Material}
+Proper Base Change is \cite[Milne VI.1]{milne_etale_cohomology} and Smooth Base change is \cite[Milne VI.4]{milne_etale_cohomology}.
+\begin{thm}[Proper Base Change]\label{thm:proper-base-change}
+Suppose that we have the fiber product diagram
+\begin{tpic}
+\node (A) at (0,0) {$X'$};
+\node (B) at (2,0) {$X$};
+\node (C) at (0,-2) {$S'$};
+\node (D) at (2,-2) {$S$};
+\path[->,font=\scriptsize,=>angle 90]
+(A) edge node[above]{$\pi'$} (B)
+(A) edge node[left]{$f'$} (C)
+(B) edge node[right]{$f$} (D)
+(C) edge node[above]{$\pi$} (D);
+\end{tpic}
+Let $f:X\to S$ be a proper map and $\cF$ be a torsion sheaf on $X_{\et}$. Then the base change morphism $\pullback{\pi}(\irightderived{r}{\pushforward{f}\cF})\to\irightderived{r}{\pushforward{f'}(\pullback{\pi'}\cF)}$ is an isomorphism for all $r\ge 0$.
+\end{thm}
+\begin{cor}
+Let $X/k$ be a proper scheme where $k$ is a separably closed field or a finite field and $\cF$ be a constructible sheaf on $X_{\et}$. Then $H^r(X,\cF)$ is finite for $i\ge 0$. 
+\end{cor}
+\begin{rem}
+The above condition that $k$ be separably closed or finite is in fact necessary. For example if we take $k=\Q$ and $\cF=\Z/2\Z$ then in fact $H^1_{\et}(\Q,\Z/n\Z)$ is not finite.
+\end{rem}
+\begin{lem}
+Let $\cF=\{\cF_n\}$ be an $\ell$-adic sheaf on $X_{\et}$ such that $\cF_n$ is flat as a sheaf of $\Z/\ell^n\Z$-modules and $H^r(X,\cF_n)$ is finite for all $r$ and $n$. Then $H^r(X,\cF)$ is finitely generated as a $\Z_{\ell}$-module and there are exact sequences \begin{teqn}0\arrow[r]&H^r(X,\cF)/\ell^n\arrow[r]&H^r(X,\cF_n)\arrow[r]&H^{r+1}(X,F)[\ell^n].\end{teqn}
+\end{lem}
+The above means that $H^r_{\et}(X_{\bar{k}},\Z_{\ell})$ are finite $Z_{\ell}$-modules and $H^r_{\et}(X_{\bar{k}},\Q_{\ell})$ are finite $\Q_{\ell}$-vector spaces.
+\begin{thm}[Smooth Base Change]\label{thm:smooth-base-change}
+Suppose again that we have the fiber product diagram
+\begin{tpic}
+\node (A) at (0,0) {$X'$};
+\node (B) at (2,0) {$X$};
+\node (C) at (0,-2) {$S'$};
+\node (D) at (2,-2) {$S$};
+\path[->,font=\scriptsize,=>angle 90]
+(A) edge node[above]{$\pi'$} (B)
+(A) edge node[left]{$f'$} (C)
+(B) edge node[right]{$f$} (D)
+(C) edge node[above]{$\pi$} (D);
+\end{tpic}
+Let $f:X\to S$ be a quasi-compact map, $\pi:S'\to S$ be a smooth map and $\cF$ be a torsion sheaf on $X_{\et}$ whose torsion is prime to $\Char(X)$. Then the base change morphism $\pullback{\pi}(\irightderived{r}{\pushforward{f}\cF})\to\irightderived{r}{\pushforward{f'}(\pullback{\pi'}\cF)}$ is an isomorphism for all $r\ge 0$.
+\end{thm}
+\begin{cor}
+Let $k\subset K$ be two separably closed fields and let $X/k$ be quasi-separated. If $\cF$ is a torsion sheaf on $X_{\et}$ with torsion prime to $\Char k$ then there is a natural isomorphism \begin{teqn}H^i(X,\cF)\cong H^i(X_K,\cF).\end{teqn}  
+\end{cor}
+%Subsection Calculations
+\subsection{Calculations}
+Reference for this section is \cite[Milne III.2]{milne_etale_cohomology}.
+\begin{thm}[Leray spectral sequence]
+Let $f:Y\to X$ be a morphism of $S$-schemes and let $\cG$ be a sheaf on $Y_{\et}$. Then there is a weakly converging spectral sequence on page $2$ given by \begin{teqn}H^p_{\et}(X, \irightderived{q}{f_{\et}}(Y, \cG))\Rightarrow H^{p+q}_{\et}(Y,\cG).\end{teqn}
+\end{thm}
+\begin{thm}[Hochschild-Serre spectral sequence]
+Let $\pi:X'\to X$ be a finite Galois covering with Galois group $G$ and let $\cF$ be a sheaf on $X_{\et}$. Then there is a weakly converging spectral sequence on page $2$ given by \begin{teqn}H^p(G, H^q_{\et}(X', \cF))\Rightarrow H^{p+q}_{\et}(X,\cF).\end{teqn} 
+\end{thm}
+Let $X/S$ be a regular, integral, quasi-compact scheme. There is a ``fundamental exact sequence''\footnote{Check \cite{alex_youcis} for a similar calculation.} of sheaves in \'etale topology \begin{teqn}0\arrow[r]&\G_{m,X}\arrow[r]&\pushforward{g}\G_{m,K}\arrow[r]&D_X\arrow[r]&0\end{teqn} where $g:\spec K\hookrightarrow X$ is the generic point of $X$ and \begin{teqn}\displaystyle D_X=\bigoplus_{v\in |X_1|} \pushforward{{i_v}}\underline{Z}\end{teqn} where $|X_1|$ is the set of codimension $1$ primes in $X$ and $i_v:v\hookrightarrow X$ is a codimension $1$ prime.
+We obtain the following results 
+\begin{teqn}\displaystyle\begin{cases}H^0(X,D_X)=\bigoplus_{v\in |X_1|}\Z\\H^1(X,D_X)=0\\ H^2(X,D_X)\hookrightarrow \bigoplus_{v\in |X_1|}\Hom(G_v, \Q/\Z),\end{cases}
+\begin{cases}H^0(X,\pushforward{g}\G_{m,K})=\units{K}\\ H^1(X,\pushforward{g}\G_{m,K})=H^1(K,\G_m)=0\\ H^2(X,\pushforward{g}\G_{m,K})\hookrightarrow H^2(K,\G_m).\end{cases}\end{teqn}
+From this we get two exact sequences \begin{teqn}0\to\Gamma(X,\units{\cO_X})\to \units{K}\to\bigoplus_{v}\Z\to H^1(X,\G_m) \\ 0\to H^2(X,\G_m)\to H^2(K,\G_m)\end{teqn}
+\begin{enumerate}
+\item Let $X$ be a smooth algebraic curve over an algebraically closed field. There is Tsen's theorem\footnote{Check \cite{akhil_matthew} for details.} which says that the function field $K$ of $X$ is $C_1$ and therefore of cohomological dimension $1$ and this means that $H^r(K,\G_m)=0$ for $r>0$. This implies that $H^r(X,\G_m)=0$ for $r>1$. 
+\item Let $X$ be a complete smooth algebraic curve over a finite field $k$. Then following Serre we have that $H^r(K,\G_m)=0$ for $r>2$. Therefore from class field theory of function field we have \begin{teqn}\begin{cases}H^2(X,\G_m)=0\\ H^3(X,\G_m)\cong\Q/\Z\\ H^r(X,G_m)=0\text{ for }r>3\end{cases}.\end{teqn} 
+\end{enumerate}
+For any scheme $X$ we have the ``Kummer exact sequence'' \begin{teqn}0\arrow[r]&\mu_{n,X}\arrow[r]&\G_{m,X}\arrow[r, "\times n"]&\G_{m,X}\arrow[r]&0\end{teqn} from which we get a long exact sequence \begin{teqn}0\arrow[r]&\Gamma(X,\cO_X)^{\times}/\Gamma(X,\cO_X)^{\times n}\arrow[r]& H^1(X,\mu_n)\arrow[r]& Pic(X)[n]\arrow[r]& 0.\end{teqn} 
+\begin{enumerate}
+\item Thus if $X$ is complete normal variety over a field $k$ then we may rewrite the sequence as \begin{teqn}0\arrow[r]&k^{\times}/k^{\times n}\arrow[r]& H^1(X,\mu_n)\arrow[r]& Pic(X)[n]\arrow[r]& 0.\end{teqn}
+\item Moreover if we assume that $\Char k $ does not divide $n$ and $k$ has the $n$-th primitive roots of unity then we may further rewrite the above as \begin{teqn}0\arrow[r]&k^{\times}/k^{\times n}\arrow[r]& H^1(X,\Z/n\Z)\arrow[r]& Pic(X)[n]\arrow[r]& 0.\end{teqn}
+\end{enumerate}
+\begin{prop}[Mayer-Vietoris sequence]
+Let $X/S$ be any scheme and $U,V$ be an open Zariski covering of $X$ then there is a long exact sequence \newline\adjustbox{scale=.9,center}{\begin{tikzcd}\cdots\arrow[r]&H^{n-1}_{\et}(U,\cF)\oplus H^{n-1}_{\et}(V,\cF)\arrow[r]&H^{n-1}_{\et}(U\cap V,\cF)\arrow[r]&H^n_{\et}(X,\cF)\arrow[r]&\cdots\end{tikzcd}}
+\end{prop}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\printbibliography
+\end{document}
