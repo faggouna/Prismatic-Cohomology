@@ -1,0 +1,225 @@
+\documentclass[11pt,a4paper,onesided,final, notitlepage]{article}
+\usepackage[tmargin=2.5cm,bmargin=2.5cm,lmargin=3.7cm,rmargin=3.2cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+%\documentclass[psamsfonts]{amsart}
+
+%----------Packages-----------------------------------------------------
+\usepackage{amssymb,amsfonts}
+\usepackage{amsthm}
+%\usepackage{mathabx}%---For widecheck
+\usepackage{calligra,mathrsfs}%---For mathscr
+\usepackage{mathtools}%-------Loads amsmath
+\usepackage{tikz-cd}%---------Commutative Diagrams, NOT loaded in tikz package, this is a special package easy to use better than amscd
+\usepackage{tikz}%-------tikz package for diagrams and drawings
+\usetikzlibrary{shapes.geometric, arrows}%---libraries loaded in tikz
+\usepackage[backend=biber,style=alphabetic,sorting=nyt]{biblatex}%----biber(recommended) or bibtex(traditional) is the backbender that sorts the bib items, common styles are "numeric" and "alphabetic" and "draft", common sorting counter are "none" for no sorting
+\usepackage{csquotes}%When using babel or polyglossia with biblatex, loading csquotes is recommended to ensure that quoted texts are typeset according to the rules of your main language.
+
+
+%--------Theorem Environments--------------------------------------------
+%theoremstyle{plain} --- default
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{conj}[thm]{Conjecture}
+\newtheorem{quest}[thm]{Question}
+
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{defns}[thm]{Definitions}
+\newtheorem{con}[thm]{Construction}
+\newtheorem{exmp}[thm]{Example}
+\newtheorem{exmps}[thm]{Examples}
+\newtheorem{notn}[thm]{Notation}
+\newtheorem{notns}[thm]{Notations}
+\newtheorem{addm}[thm]{Addendum}
+\newtheorem{exer}[thm]{Exercise}
+
+\theoremstyle{remark}
+\newtheorem{com}[thm]{Comment}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem{rems}[thm]{Remarks}
+\newtheorem{warn}[thm]{Warning}
+\newtheorem{sch}[thm]{Scholium}
+%\makeatletter
+
+%\let\c@equation\c@thm
+%\def\els@aparagraph[#1]#2{\elsparagraph[#1]{#2\@addpunct{.}}}
+%\def\els@bparagraph#1{\elsparagraph*{#1\@addpunct{.}}}
+%\makeatother
+
+\numberwithin{equation}{section}
+%--------Environments define-------------------------------------------
+\newenvironment{teqn}{\begin{equation}\begin{tikzcd}\displaystyle}{\end{tikzcd}\end{equation}}
+\newenvironment{teqn*}{\begin{equation*}\begin{tikzcd}}{\end{tikzcd}\end{equation*}}
+\newenvironment{tpic}{\begin{equation}\begin{tikzpicture}}{\end{tikzpicture}\end{equation}}
+\newenvironment{tpic*}{\begin{equation*}\begin{tikzpicture}}{\end{tikzpicture}\end{equation*}}
+%\renewenvironment{proof}{\paragraph{\textit{Proof.}}}{fill}
+
+%--------Symbols define -----------------------------------------------
+\DeclareMathOperator{\A}{\mathbb{A}}%-----mathbb
+\DeclareMathOperator{\R}{\mathbb{R}}%-----mathbb
+\DeclareMathOperator{\C}{\mathbb{C}}%-----mathbb
+\DeclareMathOperator{\Q}{\mathbb{Q}}%-----mathbb
+\DeclareMathOperator{\F}{\mathbb{F}} %------mathbb
+\DeclareMathOperator{\Z}{\mathbb{Z}}%-----mathbb
+\DeclareMathOperator{\p}{\mathbb{P}}
+\DeclareMathOperator{\fp}{\mathfrak{p}}%--mathfrak
+\DeclareMathOperator{\cO}{\mathcal{O}}
+\DeclareMathOperator{\G}{\mathbb{G}}
+\DeclareMathOperator{\derglob}{\mathit{H}}
+\DeclareMathOperator{\cF}{\mathscr{F}}
+\DeclareMathOperator{\cG}{\mathscr{G}}
+\DeclareMathOperator{\cH}{\mathscr{H}}
+\DeclareMathOperator{\cI}{\mathscr{I}}
+\DeclareMathOperator{\cA}{\mathscr{A}}
+\DeclareMathOperator{\cB}{\mathscr{B}}
+\DeclareMathOperator{\cK}{\mathscr{K}}
+\DeclareMathOperator{\cL}{\mathscr{L}}
+\DeclareMathOperator{\cC}{\mathscr{C}}
+\DeclareMathOperator{\cD}{\mathscr{D}}
+\DeclareMathOperator{\cT}{\mathcal{T}}
+\DeclareMathOperator{\fq}{\mathfrak{q}}%---mathcal
+\DeclareMathOperator{\fa}{\mathfrak{a}}
+\DeclareMathOperator{\fm}{\mathfrak{m}}
+\DeclareMathOperator{\fX}{\mathfrak{X}}
+\DeclareMathOperator{\cHom}{\mathscr{H}\text{\kern -3pt {\calligra\large om}}\,}
+ %\renewcommand{\P}{\mathbb{P}}
+ % \DeclareMathOperator {\nC}{\mathbb{C}^{\times}}
+%               -------  Calculus   --------------
+
+
+%           ------- Linear Algebra ---------------
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\Ass}{Ass}
+\DeclareMathOperator{\Fin}{Fin}
+\DeclareMathOperator{\Ch}{Ch}
+\DeclareMathOperator{\Sets}{Sets}
+\DeclareMathOperator{\fsets}{FSets}
+\DeclareMathOperator{\Fr}{Fr}
+\DeclareMathOperator{\GL}{GL}
+\DeclareMathOperator{\PGL}{PGL}
+\DeclareMathOperator{\SL}{SL}
+% ---------------Algebra
+\DeclareMathOperator{\gl}{gl\_dim}
+\DeclareMathOperator{\tr}{trace}
+\DeclareMathOperator{\Tor}{Tor}
+\DeclareMathOperator{\Ext}{Ext}
+\DeclareMathOperator{\gr}{gr}
+\DeclareMathOperator{\Mod}{Mod}
+\DeclareMathOperator{\Alg}{Alg}
+\DeclareMathOperator{\height}{height}
+\DeclareMathOperator{\depth}{depth}
+\DeclareMathOperator{\codim}{codim}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\ann}{ann}
+\DeclareMathOperator{\pd}{\text{pd}}
+\DeclareMathOperator{\Fitt}{Fitt}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\op}{op}
+%           -------- Geometry ---------------
+\DeclareMathOperator{\spec}{Spec}
+\DeclareMathOperator{\Sch}{Sch}
+\DeclareMathOperator{\proj}{Proj}
+\DeclareMathOperator{\Pic}{Pic} 
+\DeclareMathOperator{\pico}{Pic^{0}}
+\DeclareMathOperator{\Div}{Div}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\obj}{Obj}
+\DeclareMathOperator{\mor}{Mor}
+\DeclareMathOperator{\Ind}{Index}
+\DeclareMathOperator{\length}{length}
+\DeclareMathOperator{\ic}{i.c.}
+\DeclareMathOperator{\an}{an}
+
+%          ---------- Arithmetic -------------
+\DeclareMathOperator{\spa}{Spa}
+\DeclareMathOperator{\perf}{Perf}
+\DeclareMathOperator{\zar}{zar}
+\DeclareMathOperator{\shv}{Sh}
+\DeclareMathOperator{\Et}{Et}
+\DeclareMathOperator{\Zar}{Zar}
+\DeclareMathOperator{\et}{\Acute{e}t}
+\DeclareMathOperator{\fet}{f\Acute{e}t}
+\DeclareMathOperator{\afet}{af\Acute{e}t}
+\DeclareMathOperator{\gal}{Gal}
+\DeclareMathOperator{\galk}{\gal(\bar{K}/K)}
+\DeclareMathOperator{\Char}{char}
+\DeclareMathOperator{\fppf}{\textit{fppf}}
+\DeclareMathOperator{\fpqc}{\textit{fpqc}}
+%\DeclareMathOperator{\Qproots}{\mathbb{Q}_\text{p}\left(\text{p}^{1/\text{p}^{\infty}}\right)}
+%\DeclareMathOperator{\eq}{\xlongrightarrow{\text{eq.}}}
+
+%----------------------Commands define--------------------------------
+\newcommand{\eq}[2][\text{eq.}]{\xrightarrow[#2]{#1}}
+\newcommand{\tilt}[1]{{#1^{\flat}}}
+\newcommand{\untilt}[1]{{#1^{\#}}}
+\newcommand{\tight}[1]{{#1^{\ast}}}
+\newcommand{\units}[1]{{#1^{\times}}}
+\newcommand{\sep}[1]{{#1^{\text{sep}}}}
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\inv}[1]{\left[\frac{1}{#1}\right]}
+\newcommand{\colim}[1]{\underset{#1}{\text{colim}}}
+\newcommand{\twocolim}[1]{\underset{#1}{\text{2-colim}}}
+\newcommand {\sub}{\mbox{SB}}
+\newcommand{\cc}[1]{\mathcal{#1}}
+\newcommand{\zero}[1]{{#1^0}}
+\newcommand{\doublezero}[1]{{{#1}^{00}}}
+\newcommand{\zz}[1]{#1^{00}}
+\newcommand{\plus}[1]{#1^+}
+\newcommand{\minus}[1]{#1^{-}}
+\newcommand{\bounded}[1]{#1^{b}}
+\newcommand{\ff}[1]{#1^{\flat}}
+\newcommand{\Qproots}{\mathbb{Q}_p\left(p^{1/p^{\infty}}\right)}
+\newcommand{\formal}[1]{[\![#1]\!]}
+\newcommand{\parx}[2]{\frac{\partial #2}{\partial x_{#1}}}
+\newcommand{\proots}[1]{{#1}^{1/p^{\infty}}}
+\newcommand{\nroot}[2]{#1^{\frac{1}{#2}}}
+\newcommand{\rationalnbd}[2]{\left\langle\frac{#1}{#2}\right\rangle}
+\newcommand{\rationalmultnbd}[2]{\left\langle\frac{#1_1,\cdots ,#1_n}{#2}\right\rangle}
+\newcommand{\qpowers}[2]{#1^{[#2]}}
+\newcommand{\almostisom}{\cong^a}
+\newcommand{\almostequal}{=^a}
+\newcommand{\complex}[1]{#1^{\cdot}}
+\newcommand{\pushforward}[1]{{#1}_{\ast}}
+\newcommand{\pullback}[1]{{{#1}^{\ast}}}
+\newcommand{\lowershriek}[1]{#1_{!}}
+\newcommand{\uppershriek}[1]{#1^{!}}
+\newcommand{\rightderived}[1]{R #1}
+\newcommand{\leftderived}[1]{L #1}
+\newcommand{\irightderived}[2]{R^{#1} #2}
+\newcommand{\crightderived}[1]{R_c{#1}}
+\newcommand{\ileftderived}[2]{L^{#1} #2}
+\newcommand{\derived}[1]{\mathscr{D}(#1)}
+\newcommand{\pderived}[1]{\mathscr{D}^{+}{#1}}
+\newcommand{\mderived}[1]{\mathscr{D}^{-}{#1}}
+\newcommand{\bderived}[1]{\mathscr{D}^{b}{#1}}
+\newcommand{\dual}[1]{#1^{DUAL}}
+%\numberwithin{eqution}{section}
+
+%----------------------Latex3 Command define --------------------------
+% \NewDocumentCommand{\foo}{o}{#1}
+% \NewDocumentCommand{\formula}{s m m}{
+%         \IfBooleanTF(#1){
+%               \frac{#2_1,\cdots,#2_n}{#3}
+%         }{
+%                 \frac{#2}{#3}
+%         }
+        
+% }
+% \newcommand{\rationalopen}{}
+
+%----------------------Tikz define-------------------------------------
+\tikzstyle{textbox} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text width=3cm, text centered, draw=black, fill=none]
+\tikzstyle{u} = [text centered, draw=none, fill=none]
+\tikzstyle{arrow2} = [thick,->,>=stealth]
+\tikzstyle{arrow1} = [U]
+%-----------------------Misc.
+\setcounter{tocdepth}{2}
