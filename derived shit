@@ -1,0 +1,382 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1671\cocoasubrtf600
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \\documentclass[11pt,a4paper,onesided,final, notitlepage]\{article\}\
+\\usepackage[tmargin=2.5cm,bmargin=2.5cm,lmargin=3.7cm,rmargin=3.2cm]\{geometry\}\
+\\usepackage[utf8]\{inputenc\}\
+\\usepackage[english]\{babel\}\
+%\\documentclass[psamsfonts]\{amsart\}\
+\
+%----------Packages-----------------------------------------------------\
+\\usepackage\{amssymb,amsfonts\}\
+\\usepackage\{amsthm\}\
+%\\usepackage\{mathabx\}%---For widecheck\
+\\usepackage\{calligra,mathrsfs\}%---For mathscr\
+\\usepackage\{mathtools\}%-------Loads amsmath\
+\\usepackage\{tikz-cd\}%---------Commutative Diagrams, NOT loaded in tikz package, this is a special package easy to use better than amscd\
+\\usepackage\{tikz\}%-------tikz package for diagrams and drawings\
+\\usetikzlibrary\{shapes.geometric, arrows\}%---libraries loaded in tikz\
+\\usepackage[backend=biber,style=alphabetic,sorting=nyt]\{biblatex\}%----biber(recommended) or bibtex(traditional) is the backbender that sorts the bib items, common styles are "numeric" and "alphabetic" and "draft", common sorting counter are "none" for no sorting\
+\\usepackage\{csquotes\}%When using babel or polyglossia with biblatex, loading csquotes is recommended to ensure that quoted texts are typeset according to the rules of your main language.\
+\
+\
+%--------Theorem Environments--------------------------------------------\
+%theoremstyle\{plain\} --- default\
+\\newtheorem\{thm\}\{Theorem\}[section]\
+\\newtheorem\{cor\}[thm]\{Corollary\}\
+\\newtheorem\{prop\}[thm]\{Proposition\}\
+\\newtheorem\{lem\}[thm]\{Lemma\}\
+\\newtheorem\{conj\}[thm]\{Conjecture\}\
+\\newtheorem\{quest\}[thm]\{Question\}\
+\
+\\theoremstyle\{definition\}\
+\\newtheorem\{defn\}[thm]\{Definition\}\
+\\newtheorem\{defns\}[thm]\{Definitions\}\
+\\newtheorem\{con\}[thm]\{Construction\}\
+\\newtheorem\{exmp\}[thm]\{Example\}\
+\\newtheorem\{exmps\}[thm]\{Examples\}\
+\\newtheorem\{notn\}[thm]\{Notation\}\
+\\newtheorem\{notns\}[thm]\{Notations\}\
+\\newtheorem\{addm\}[thm]\{Addendum\}\
+\\newtheorem\{exer\}[thm]\{Exercise\}\
+\
+\\theoremstyle\{remark\}\
+\\newtheorem\{com\}[thm]\{Comment\}\
+\\newtheorem\{rem\}[thm]\{Remark\}\
+\\newtheorem\{rems\}[thm]\{Remarks\}\
+\\newtheorem\{warn\}[thm]\{Warning\}\
+\\newtheorem\{sch\}[thm]\{Scholium\}\
+%\\makeatletter\
+\
+%\\let\\c@equation\\c@thm\
+%\\def\\els@aparagraph[#1]#2\{\\elsparagraph[#1]\{#2\\@addpunct\{.\}\}\}\
+%\\def\\els@bparagraph#1\{\\elsparagraph*\{#1\\@addpunct\{.\}\}\}\
+%\\makeatother\
+\
+\\numberwithin\{equation\}\{section\}\
+%--------Environments define-------------------------------------------\
+\\newenvironment\{teqn\}\{\\begin\{equation\}\\begin\{tikzcd\}\\displaystyle\}\{\\end\{tikzcd\}\\end\{equation\}\}\
+\\newenvironment\{teqn*\}\{\\begin\{equation*\}\\begin\{tikzcd\}\}\{\\end\{tikzcd\}\\end\{equation*\}\}\
+\\newenvironment\{tpic\}\{\\begin\{equation\}\\begin\{tikzpicture\}\}\{\\end\{tikzpicture\}\\end\{equation\}\}\
+\\newenvironment\{tpic*\}\{\\begin\{equation*\}\\begin\{tikzpicture\}\}\{\\end\{tikzpicture\}\\end\{equation*\}\}\
+%\\renewenvironment\{proof\}\{\\paragraph\{\\textit\{Proof.\}\}\}\{fill\}\
+\
+%--------Symbols define -----------------------------------------------\
+\\DeclareMathOperator\{\\A\}\{\\mathbb\{A\}\}%-----mathbb\
+\\DeclareMathOperator\{\\R\}\{\\mathbb\{R\}\}%-----mathbb\
+\\DeclareMathOperator\{\\C\}\{\\mathbb\{C\}\}%-----mathbb\
+\\DeclareMathOperator\{\\Q\}\{\\mathbb\{Q\}\}%-----mathbb\
+\\DeclareMathOperator\{\\F\}\{\\mathbb\{F\}\} %------mathbb\
+\\DeclareMathOperator\{\\Z\}\{\\mathbb\{Z\}\}%-----mathbb\
+\\DeclareMathOperator\{\\p\}\{\\mathbb\{P\}\}\
+\\DeclareMathOperator\{\\fp\}\{\\mathfrak\{p\}\}%--mathfrak\
+\\DeclareMathOperator\{\\cO\}\{\\mathcal\{O\}\}\
+\\DeclareMathOperator\{\\G\}\{\\mathbb\{G\}\}\
+\\DeclareMathOperator\{\\derglob\}\{\\mathit\{H\}\}\
+\\DeclareMathOperator\{\\cF\}\{\\mathscr\{F\}\}\
+\\DeclareMathOperator\{\\cG\}\{\\mathscr\{G\}\}\
+\\DeclareMathOperator\{\\cH\}\{\\mathscr\{H\}\}\
+\\DeclareMathOperator\{\\cI\}\{\\mathscr\{I\}\}\
+\\DeclareMathOperator\{\\cA\}\{\\mathscr\{A\}\}\
+\\DeclareMathOperator\{\\cB\}\{\\mathscr\{B\}\}\
+\\DeclareMathOperator\{\\cK\}\{\\mathscr\{K\}\}\
+\\DeclareMathOperator\{\\cL\}\{\\mathscr\{L\}\}\
+\\DeclareMathOperator\{\\cC\}\{\\mathscr\{C\}\}\
+\\DeclareMathOperator\{\\cD\}\{\\mathscr\{D\}\}\
+\\DeclareMathOperator\{\\cT\}\{\\mathcal\{T\}\}\
+\\DeclareMathOperator\{\\fq\}\{\\mathfrak\{q\}\}%---mathcal\
+\\DeclareMathOperator\{\\fa\}\{\\mathfrak\{a\}\}\
+\\DeclareMathOperator\{\\fm\}\{\\mathfrak\{m\}\}\
+\\DeclareMathOperator\{\\fX\}\{\\mathfrak\{X\}\}\
+\\DeclareMathOperator\{\\cHom\}\{\\mathscr\{H\}\\text\{\\kern -3pt \{\\calligra\\large om\}\}\\,\}\
+ %\\renewcommand\{\\P\}\{\\mathbb\{P\}\}\
+ % \\DeclareMathOperator \{\\nC\}\{\\mathbb\{C\}^\{\\times\}\}\
+%               -------  Calculus   --------------\
+\
+\
+%           ------- Linear Algebra ---------------\
+\\DeclareMathOperator\{\\im\}\{im\}\
+\\DeclareMathOperator\{\\id\}\{id\}\
+\\DeclareMathOperator\{\\Hom\}\{Hom\}\
+\\DeclareMathOperator\{\\End\}\{End\}\
+\\DeclareMathOperator\{\\Aut\}\{Aut\}\
+\\DeclareMathOperator\{\\rank\}\{rank\}\
+\\DeclareMathOperator\{\\Ass\}\{Ass\}\
+\\DeclareMathOperator\{\\Fin\}\{Fin\}\
+\\DeclareMathOperator\{\\Ch\}\{Ch\}\
+\\DeclareMathOperator\{\\Sets\}\{Sets\}\
+\\DeclareMathOperator\{\\fsets\}\{FSets\}\
+\\DeclareMathOperator\{\\Fr\}\{Fr\}\
+\\DeclareMathOperator\{\\GL\}\{GL\}\
+\\DeclareMathOperator\{\\PGL\}\{PGL\}\
+\\DeclareMathOperator\{\\SL\}\{SL\}\
+% ---------------Algebra\
+\\DeclareMathOperator\{\\gl\}\{gl\\_dim\}\
+\\DeclareMathOperator\{\\tr\}\{trace\}\
+\\DeclareMathOperator\{\\Tor\}\{Tor\}\
+\\DeclareMathOperator\{\\Ext\}\{Ext\}\
+\\DeclareMathOperator\{\\gr\}\{gr\}\
+\\DeclareMathOperator\{\\Mod\}\{Mod\}\
+\\DeclareMathOperator\{\\Alg\}\{Alg\}\
+\\DeclareMathOperator\{\\height\}\{height\}\
+\\DeclareMathOperator\{\\depth\}\{depth\}\
+\\DeclareMathOperator\{\\codim\}\{codim\}\
+\\DeclareMathOperator\{\\coker\}\{coker\}\
+\\DeclareMathOperator\{\\ann\}\{ann\}\
+\\DeclareMathOperator\{\\pd\}\{\\text\{pd\}\}\
+\\DeclareMathOperator\{\\Fitt\}\{Fitt\}\
+\\DeclareMathOperator\{\\Gal\}\{Gal\}\
+\\DeclareMathOperator\{\\op\}\{op\}\
+%           -------- Geometry ---------------\
+\\DeclareMathOperator\{\\spec\}\{Spec\}\
+\\DeclareMathOperator\{\\Sch\}\{Sch\}\
+\\DeclareMathOperator\{\\proj\}\{Proj\}\
+\\DeclareMathOperator\{\\Pic\}\{Pic\} \
+\\DeclareMathOperator\{\\pico\}\{Pic^\{0\}\}\
+\\DeclareMathOperator\{\\Div\}\{Div\}\
+\\DeclareMathOperator\{\\ord\}\{ord\}\
+\\DeclareMathOperator\{\\obj\}\{Obj\}\
+\\DeclareMathOperator\{\\mor\}\{Mor\}\
+\\DeclareMathOperator\{\\Ind\}\{Index\}\
+\\DeclareMathOperator\{\\length\}\{length\}\
+\\DeclareMathOperator\{\\ic\}\{i.c.\}\
+\\DeclareMathOperator\{\\an\}\{an\}\
+\
+%          ---------- Arithmetic -------------\
+\\DeclareMathOperator\{\\spa\}\{Spa\}\
+\\DeclareMathOperator\{\\perf\}\{Perf\}\
+\\DeclareMathOperator\{\\zar\}\{zar\}\
+\\DeclareMathOperator\{\\shv\}\{Sh\}\
+\\DeclareMathOperator\{\\Et\}\{Et\}\
+\\DeclareMathOperator\{\\Zar\}\{Zar\}\
+\\DeclareMathOperator\{\\et\}\{\\Acute\{e\}t\}\
+\\DeclareMathOperator\{\\fet\}\{f\\Acute\{e\}t\}\
+\\DeclareMathOperator\{\\afet\}\{af\\Acute\{e\}t\}\
+\\DeclareMathOperator\{\\gal\}\{Gal\}\
+\\DeclareMathOperator\{\\galk\}\{\\gal(\\bar\{K\}/K)\}\
+\\DeclareMathOperator\{\\Char\}\{char\}\
+\\DeclareMathOperator\{\\fppf\}\{\\textit\{fppf\}\}\
+\\DeclareMathOperator\{\\fpqc\}\{\\textit\{fpqc\}\}\
+%\\DeclareMathOperator\{\\Qproots\}\{\\mathbb\{Q\}_\\text\{p\}\\left(\\text\{p\}^\{1/\\text\{p\}^\{\\infty\}\}\\right)\}\
+%\\DeclareMathOperator\{\\eq\}\{\\xlongrightarrow\{\\text\{eq.\}\}\}\
+\
+%----------------------Commands define--------------------------------\
+\\newcommand\{\\eq\}[2][\\text\{eq.\}]\{\\xrightarrow[#2]\{#1\}\}\
+\\newcommand\{\\tilt\}[1]\{\{#1^\{\\flat\}\}\}\
+\\newcommand\{\\untilt\}[1]\{\{#1^\{\\#\}\}\}\
+\\newcommand\{\\tight\}[1]\{\{#1^\{\\ast\}\}\}\
+\\newcommand\{\\units\}[1]\{\{#1^\{\\times\}\}\}\
+\\newcommand\{\\sep\}[1]\{\{#1^\{\\text\{sep\}\}\}\}\
+\\newcommand\{\\br\}[1]\{\\left(#1\\right)\}\
+\\newcommand\{\\inv\}[1]\{\\left[\\frac\{1\}\{#1\}\\right]\}\
+\\newcommand\{\\colim\}[1]\{\\underset\{#1\}\{\\text\{colim\}\}\}\
+\\newcommand\{\\twocolim\}[1]\{\\underset\{#1\}\{\\text\{2-colim\}\}\}\
+\\newcommand \{\\sub\}\{\\mbox\{SB\}\}\
+\\newcommand\{\\cc\}[1]\{\\mathcal\{#1\}\}\
+\\newcommand\{\\zero\}[1]\{\{#1^0\}\}\
+\\newcommand\{\\doublezero\}[1]\{\{\{#1\}^\{00\}\}\}\
+\\newcommand\{\\zz\}[1]\{#1^\{00\}\}\
+\\newcommand\{\\plus\}[1]\{#1^+\}\
+\\newcommand\{\\minus\}[1]\{#1^\{-\}\}\
+\\newcommand\{\\bounded\}[1]\{#1^\{b\}\}\
+\\newcommand\{\\ff\}[1]\{#1^\{\\flat\}\}\
+\\newcommand\{\\Qproots\}\{\\mathbb\{Q\}_p\\left(p^\{1/p^\{\\infty\}\}\\right)\}\
+\\newcommand\{\\formal\}[1]\{[\\![#1]\\!]\}\
+\\newcommand\{\\parx\}[2]\{\\frac\{\\partial #2\}\{\\partial x_\{#1\}\}\}\
+\\newcommand\{\\proots\}[1]\{\{#1\}^\{1/p^\{\\infty\}\}\}\
+\\newcommand\{\\nroot\}[2]\{#1^\{\\frac\{1\}\{#2\}\}\}\
+\\newcommand\{\\rationalnbd\}[2]\{\\left\\langle\\frac\{#1\}\{#2\}\\right\\rangle\}\
+\\newcommand\{\\rationalmultnbd\}[2]\{\\left\\langle\\frac\{#1_1,\\cdots ,#1_n\}\{#2\}\\right\\rangle\}\
+\\newcommand\{\\qpowers\}[2]\{#1^\{[#2]\}\}\
+\\newcommand\{\\almostisom\}\{\\cong^a\}\
+\\newcommand\{\\almostequal\}\{=^a\}\
+\\newcommand\{\\complex\}[1]\{#1^\{\\cdot\}\}\
+\\newcommand\{\\pushforward\}[1]\{\{#1\}_\{\\ast\}\}\
+\\newcommand\{\\pullback\}[1]\{\{\{#1\}^\{\\ast\}\}\}\
+\\newcommand\{\\lowershriek\}[1]\{#1_\{!\}\}\
+\\newcommand\{\\uppershriek\}[1]\{#1^\{!\}\}\
+\\newcommand\{\\rightderived\}[1]\{R #1\}\
+\\newcommand\{\\leftderived\}[1]\{L #1\}\
+\\newcommand\{\\irightderived\}[2]\{R^\{#1\} #2\}\
+\\newcommand\{\\crightderived\}[1]\{R_c\{#1\}\}\
+\\newcommand\{\\ileftderived\}[2]\{L^\{#1\} #2\}\
+\\newcommand\{\\derived\}[1]\{\\mathscr\{D\}(#1)\}\
+\\newcommand\{\\pderived\}[1]\{\\mathscr\{D\}^\{+\}\{#1\}\}\
+\\newcommand\{\\mderived\}[1]\{\\mathscr\{D\}^\{-\}\{#1\}\}\
+\\newcommand\{\\bderived\}[1]\{\\mathscr\{D\}^\{b\}\{#1\}\}\
+\\newcommand\{\\dual\}[1]\{#1^\{DUAL\}\}\
+%\\numberwithin\{eqution\}\{section\}\
+\
+%----------------------Latex3 Command define --------------------------\
+% \\NewDocumentCommand\{\\foo\}\{o\}\{#1\}\
+% \\NewDocumentCommand\{\\formula\}\{s m m\}\{\
+%         \\IfBooleanTF(#1)\{\
+%               \\frac\{#2_1,\\cdots,#2_n\}\{#3\}\
+%         \}\{\
+%                 \\frac\{#2\}\{#3\}\
+%         \}\
+        \
+% \}\
+% \\newcommand\{\\rationalopen\}\{\}\
+\
+%----------------------Tikz define-------------------------------------\
+\\tikzstyle\{textbox\} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text width=3cm, text centered, draw=black, fill=none]\
+\\tikzstyle\{u\} = [text centered, draw=none, fill=none]\
+\\tikzstyle\{arrow2\} = [thick,->,>=stealth]\
+\\tikzstyle\{arrow1\} = [U]\
+%-----------------------Misc.\
+\\setcounter\{tocdepth\}\{2\}\
+\\begin\{document\}\
+\
+\\section\{Derived tensor product\}\
+\
+\
+\\section\{Derived completion\}\
+\
+Let $K\\in \\textbf\{D\}(A)$ and $f\\in A$. We denote $T(K,f)$ the derived limit of the system\
+$$ \\dots \\rightarrow K \\xrightarrow\{f\} K \\xrightarrow\{f\} K$$\
+\
+\\begin\{lem\} \\label\{clem1\}\
+The following are equivalent\
+\\begin\{enumerate\}\
+    \\item $\\Ext_A^n(A_f,K)=0$ for all $n$,\
+    \\item $\\Hom_\{\\textbf\{D\}(A)\}(E,K)=0$ for all $E$ in $\\textbf\{D\}(A_f)$,\
+    \\item $T(K,f)=0$,\
+    \\item for every $p\\in \\mathbb\{Z\}$ we have $T(H^p(K),f)=0$,\
+    \\item for every $p\\in \\mathbb\{Z\}$ we have $\\Hom_A(A_f,H^p(K))=0$ and $\\Ext^1_A(A_f,H^p(K))=0$,\
+    \\item $R\\Hom_A(A_f,K)=0$,\
+    \\item the map $\\prod_\{n\\ge 0\} K \\rightarrow \\prod_\{n\\ge 0\} K$ sending $(x_0,x_1,\\dots)$ to $(x_0-fx_1,x_1-fx_2,\\dots)$ is an isomorphism in $\\textbf\{D\}(A)$.\
+\\end\{enumerate\}\
+\\end\{lem\}\
+\\begin\{proof\}\
+Since $\\Ext^n_A(A_f,K)=\\Hom_\{\\textbf\{D\}(A)\}(A_f,K[n])= \\Hom_\{\\textbf\{D\}(A)\}(A_f[-n],K)$, we clearly have that $2)$ implies $1)$. And since $\\Ext^n_A(A_f,K)=H^n(R\\Hom_A(A_f,K))$, the equivalence between $1)$ and $6)$ is clear. Assume condition $1)$ and let $I^\\bullet$ be a $K$-injective complex of $A$-modules representing $K$. By definition of $R\\Hom$, condition $6)$ $\\Leftrightarrow$ 1) signifies that the complex $\\Hom_A(A_f,I^\\bullet)$ is acyclic. Now for an element $E\\in \\textbf\{D\}(A_f)$, let $M^\\bullet$ be a complex of $A_f$-modules representing $E$. Then \
+$$\\Hom_\{\\textbf\{D\}(A)\}(E,K)=\\Hom_\{\\textbf\{K\}(A)\}(M^\\bullet, I^\\bullet)=\\Hom_\{\\textbf\{K\}(A_f)\}(M^\\bullet, \\Hom_A(A_f,I^\\bullet))$$\
+As  $\\Hom_A(A_f,I^\\bullet))$ is a $K$-injective complex of $A_f$-modules (the above equation proves that), the fact that it is acyclic implies that it is homotopy equivalent to $0$. Therefore $\\Hom_\{\\textbf\{K\}(A_f)\}(M^\\bullet, \\Hom_A(A_f,I^\\bullet)) =0$ which proves $2)$.\
+\\\\ $ $ \\\\ Consider the following free resolution of $A_f$ as an $A$-module\
+$$ 0 \\rightarrow \\bigoplus_\{n\\in\\mathbb\{N\}\} A \\rightarrow \\bigoplus_\{n\\in\\mathbb\{N\}\} A \\rightarrow A_f \\rightarrow 0$$\
+where the first map sends $(a_0,a_1,a_2\\dots)$ to $(a_0,a_1-fa_0,a_2-fa_1,\\dots)$ and the second map sends $(a_0,a_1,a_2,\\dots)$ to $a_0+a_1/f+a_2/f^2+\\dots$. Applying $\\Hom_A(-,I^\\bullet)$, we get\
+$$0 \\rightarrow \\Hom_A(A_f,I^\\bullet) \\rightarrow \\prod I^\\bullet \\rightarrow \\prod I^\\bullet \\rightarrow 0 $$ \
+Since $\\prod I^\\bullet$ represents $\\prod_\{n\\in\\mathbb\{N\}\} K$ this proves the equivalence of $1)$ and $7)$. Moreover, by definition of the derived limit, the above exact sequence shows that $T(K,f)$ is a representative of $R\\Hom_A(A_f,K)$ in $\\textbf\{D\}(A)$. This gives the equivalence of $1)$ and $3)$.\
+\\\\ $ $ \\\\\
+We have a spectral sequence (I think this is just the spectral sequence that computes the cohomology of the $\\Hom$-bicomplex) \
+$$ E^\{p,q\}_2 = \\Ext_A^q (A_f, H^p(K)) \\Rightarrow \\Ext^\{p+q\}_A(A_f,K)$$\
+It degenerates at $E_2$ since $A_f$ has a projective resolution of length $1$ (the above free resolution) and so there are only two non-zero rows ($q=0,1$), which gives us the exact sequence\
+$$ 0 \\rightarrow \\Ext^1_A(A_f,H^\{p-1\}(K)) \\rightarrow \\Ext_A ^p(A_f,K) \\rightarrow \\Hom_A(A_f,H^p(K)) \\rightarrow 0 $$\
+This shows that $4)$ and $5)$ are equivalent to $1)$.\
+\
+\\end\{proof\}\
+\
+\\begin\{lem\} \\label\{clem2\}\
+Let $I\\subset A$ be an ideal and $M$ be an $A$-module.\
+\\begin\{enumerate\}\
+    \\item If $M$ is $I$-adically complete, then $T(M,f)=0$ for every $f\\in I$\
+    \\item If $T(M,f)=0$ for every $f\\in I$, and $I$ is finitely generated, then the map $M \\rightarrow \\varprojlim M/I^n M$ is surjective\
+\\end\{enumerate\}\
+\\end\{lem\}\
+\\begin\{proof\}\
+$1)$ assume that $M$ is $p$-adically complete. By $5.$ of lemma $\\ref\{clem1\}$, it suffices to prove that $\\Ext_A(A_f,M)=0$ and $\\Hom_A(A_f,M)=0$. But $$\\Hom_A(A_f,M)=\\Hom_A(A_f,\\varprojlim M/I^nM)=\\ varprojlim \\Hom_A(A_f,M/I^nM)=0$$ since for every $n\\ge 1 $, $\\Hom_A(A_f,M/I^nM)=0$.\
+\\\\ Now since $\\Ext^1$ characterises extensions, we need to show that every extension\
+$$ 0 \\rightarrow M \\rightarrow E \\rightarrow A_f \\rightarrow 0$$\
+is split. So for each $n\\ge 1$, select a $e_n\\in E$ mapping to $1/f^n$, and set $\\delta_n=fe_\{n+1\}-e_n\\in M$. So the element\
+$$e'_n= e_n + \\delta_n + f \\delta_\{n+1\} + f^2 \\delta_\{n+2\} + \\dots$$\
+exists since $M$ is $f$-adically complete and maps to $1/f^n$. Since $e'_n=fe^\{n+1\}$, we can define a splitting sending $1/f^n$ to $e'_n$.\
+\\\\ $ $ \\\\\
+$2)$ Assume that $I=(f_1,\\dots, f_r)$ and that $T(M,f_i)=0$ for $i=1,\\dots,r$. One easily shows that if $M\\rightarrow \\varprojlim M/f_i^nM$ is surjective for every $f_i$, then $M\\rightarrow \\varprojlim M/I^nM$ is surjective. So we can assume that $I=(f)$ and that $T(M,f)=0$.\
+\\\\ Consider some $x_n\\in M$ for $n\\ge 0$ and the extension\
+$$ 0 \\rightarrow M \\rightarrow E \\rightarrow A_f \\rightarrow 0$$\
+where $E= (M \\oplus \\bigoplus Ae_n)/\\langle x_n-fe_\{n+1\}+e_n \\rangle$. Again by $5.$ of lemma $\\ref\{clem1\}$, this extension is split, so we obtain an element that we can write $x+e_0$ $(x\\in M)$ that generates a copy of $A_f$ in $E$\
+$x+e_0= x-x_0+fe_1=x-x_0-fx_1+f^2e_2= \\dots$\
+By the snake lemma, we have $M/f^nM=E/f^nE$ and since $x+e_0 \\in f^n E$, we get that $x= x_0 + fx_1+ \\dots +f^\{n-1\}x_\{n-1\} \\mod f^nM$. Which shows the surjectivity of the desired map.\
+\\end\{proof\}\
+\
+\\begin\{defn\}\
+Let $I$ be an ideal of $A$ and $K \\in \\textbf\{D\}(A)$. We say that $K$ is derived complete with respect to $I$ if for every $f\\in I$ we have $T(K,f)=0$.\
+We denote by $\\textbf\{D\}_\{comp\}(A)=\\textbf\{D\}_\{comp\}(A,I)$ the full subcategory of $\\textbf\{D\}(A)$ consisting of derived complete objects with respect to $I$.\
+\\\\ If $M$ is an $A$-module, we say that $M$ is derived complete with respect to $I$ if $M[0]\\in \\textbf\{D\}(A)$ is derived complete with respect to $I$.\
+\\end\{defn\}\
+\\begin\{cor\}\
+If the ideal $I \\subset A$ is finitely generated, and $M$ is an $A$-module, then the following are equivalent\
+\\begin\{enumerate\}\
+    \\item $M$ is $I$-adically complete,\
+    \\item $M$ is derived complete with respect to $I$ and $I$-adically separated\
+\\end\{enumerate\}\
+\\end\{cor\}\
+\\begin\{proof\}\
+Direct consequence of $\\ref\{clem2\}$.\
+\\end\{proof\}\
+\
+\
+\
+\
+\
+\\begin\{prop\}\
+Let $I$ be a finitely generated ideal of a ring $A$. The inclusion functor $\\textbf\{D\}_\{comp\}(A,I) \\rightarrow \\textbf\{D\}(A)$ has a left adjoint, i.e, there exist a map sending any object $K$ of $\\textbf\{D\}(A)$ to a derived complete object $K^\\wedge$ of $\\textbf\{D\}(A)$ such that the map \
+$$\\Hom_\{\\textbf\{D\}(A)\}(K^\\wedge,E) \\rightarrow \\Hom_\{\\textbf\{D\}(A)\}(K,E)$$\
+is a bijection whenever $E$ is derived complete. In fact, if $A$ is generated by $f_1,\\dots,f_r \\in A$, we have\
+$$ K^\\wedge = R \\Hom\\big( (A \\rightarrow \\prod_\{i_0\} A_\{f_\{i_0\}\} \\rightarrow \\prod_\{i_0<i_1\} A_\{f_\{i_0\},f_\{i_1\}\} \\rightarrow \\dots \\rightarrow A_\{f_1,\\dots,f_r\}),K \\big)$$\
+\\end\{prop\} \
+\
+\\begin\{proof\}\
+Let $K^\\wedge$ be defined as above. Then the map of complexes\
+$$ (A \\rightarrow \\prod_\{i_0\} A_\{f_\{i_0\}\} \\rightarrow \\prod_\{i_0<i_1\} A_\{f_\{i_0\},f_\{i_1\}\} \\rightarrow \\dots \\rightarrow A_\{f_1,\\dots,f_r\}) \\rightarrow A$$\
+induces a map $K \\rightarrow K^\\wedge$. It suffices to show that $K^\\wedge$ is derived complete and that $K \\rightarrow K^\\wedge$ is an isomorphism if $K$ is derived complete.\
+\\\\ Let $f\\in A$ We have \
+\\begin\{align*\}\
+    R\\Hom_A(A_f,K^\\wedge) &= R\\Hom\\big(A_f,R \\Hom\\big( (A \\rightarrow \\prod_\{i_0\} A_\{f_\{i_0\}\} \\rightarrow \\prod_\{i_0<i_1\} A_\{f_\{i_0\},f_\{i_1\}\} \\rightarrow \\dots \\rightarrow A_\{f_1,\\dots,f_r\}),K \\big) \\big)\
+     \\\\ &= R\\Hom \\big( A_f \\otimes_A^\\mathbb\{L\} (A \\rightarrow \\prod_\{i_0\} A_\{f_\{i_0\}\} \\rightarrow \\prod_\{i_0<i_1\} A_\{f_\{i_0\},f_\{i_1\}\} \\rightarrow \\dots \\rightarrow A_\{f_1,\\dots,f_r\}),K \\big)\
+     \\\\ &= R\\Hom \\big( (A_f \\rightarrow \\prod_\{i_0\} A_\{ff_\{i_0\}\} \\rightarrow \\prod_\{i_0<i_1\} A_\{ff_\{i_0\},f_\{i_1\}\} \\rightarrow \\dots \\rightarrow A_\{ff_1,\\dots,f_r\}), K\\big)\
+\\end\{align*\}\
+The last equality is true by looking at the definition of the derived tensor product and noticing that the complex $(A \\rightarrow \\prod_\{i_0\} A_\{f_\{i_0\}\} \\rightarrow \\prod_\{i_0<i_1\} A_\{f_\{i_0\},f_\{i_1\}\} \\rightarrow \\dots \\rightarrow A_\{f_1,\\dots,f_r\})$ is $K$-flat (every element of the complex is a flat $A$-module). \
+\\\\ Now for $f\\in I$, the complex \
+$$(A_f \\rightarrow \\prod_\{i_0\} A_\{ff_\{i_0\}\} \\rightarrow \\prod_\{i_0<i_1\} A_\{ff_\{i_0\},f_\{i_1\}\} \\rightarrow \\dots \\rightarrow A_\{ff_1,\\dots,f_r\})$$\
+is $0$ in $\\textbf\{D\}(A)$ by corollary $\\ref\{Kcor\}$. Hence $R\\Hom_\{A\}(A_f,K^\\wedge)=0$, so $K^\\wedge$ is derived complete by lemma $\\ref\{clem1\}$.\
+\\\\ Conversely, by the same lemma $\\ref\{clem1\}$, we have $R\\Hom_A(A_f,K)=0$ for each $f=f_\{i_0\}\\cdots f_\{i_p\}$, hence $K\\rightarrow K^\\wedge$ is an isomorphism in $D(A)$.\
+\\end\{proof\}\
+\
+\
+\
+\
+\
+\\section\{Appendix\}\
+\\subsection\{The Koszul Complex\}\
+\
+\\begin\{defn\}\
+Let $R$ be a ring, $E$ an $R$-module and $\\varphi: E \\rightarrow R$ an $R$-module map. We define the Koszul complex $\\textbf\{K\}_\\bullet (\\varphi)$ to be the commutative differential graded algebra verifying\
+\\begin\{enumerate\}\
+    \\item the underlying graded algebra is the exterior algebra $\\wedge(E)$\
+    \\item the derivation $d:\\textbf\{K\}_\\bullet(\\varphi) \\rightarrow \\textbf\{K\}_\\bullet(\\varphi)$ is the unique derivation such that $d(e)=\\varphi(e)$ for all $e\\in E=\\textbf\{K\}_1(\\varphi)$\
+\\end\{enumerate\}\
+\\end\{defn\}\
+If $e_1 \\wedge \\dots \\wedge e_n$ is one of the generators of degree $n$ in $\\textbf\{K\}_\\bullet(\\varphi)$, then\
+$$d(e_1 \\wedge \\dots \\wedge e_n)= \\sum_i (-1)^\{i+1\}\\varphi(e_i)e_1\\wedge \\dots \\wedge \\widehat\{e_i\} \\wedge \\dots \\wedge e_n$$\
+\
+If $f_1,\\dots,f_n\\in R$, the Koszul complex on $f_1,\\dots,f_n$, denoted by $\\textbf\{K\}_\\bullet(f_\\bullet)$ is the Koszul complex associated to the map $(f_1,\\dots,f_r):R^r\\rightarrow R$.\
+\
+\\begin\{lem\} \\label\{K1\}\
+Let $e\\in E$ and $f=\\varphi(e)\\in R$. Then we have\
+$$f=de+ed$$\
+as endomorphisms of $\\textbf\{K\}_\\bullet(\\varphi)$.\
+\\\\ In particular, multiplication by $f_i$ is homotopic to zero on $\\textbf\{K\}_\\bullet(f_\\bullet)$. So the homology module $H_i(\\textbf\{K\}_\\bullet(f_\\bullet))$ are annihilated by $(f_1,\\dots,f_r)$\
+\\end\{lem\}\
+\\begin\{proof\}\
+We have $d(ea)=d(e)a-ed(a)=f a-ed(a)$.\
+\\end\{proof\}\
+\\begin\{lem\}\\label\{K2\}\
+The alternating Cech complex\
+$$R \\rightarrow \\prod_\{i_0\} R_\{f_\{i_0\}\} \\rightarrow \\prod_\{i_0<i_1\} R_\{f_\{i_0\},f_\{i_1\}\} \\rightarrow \\dots \\rightarrow R_\{f_1\\dots f_r\}$$\
+is the colimit of the Koszul complexes $\\textbf\{K\}_\\bullet(f^n_\\bullet)$.\
+\\end\{lem\}\
+\\begin\{proof\}\
+The transition maps $\\textbf\{K\}_\\bullet(f^n_\\bullet) \\rightarrow \\textbf\{K\}_\\bullet(f^\{n+1\}_\\bullet)$ send $e_\{i_0\}\\wedge \\dots \\wedge e_\{i_p\}$ to $f_\{i_0\}\\dots f_\{i_p\} e_\{i_0\}\\wedge \\dots \\wedge e_\{i_p\}$. Hence by sending each Koszul complex to the complex $R \\rightarrow \\prod_\{i_0\} R \\rightarrow \\prod_\{i_0<i_1\} R \\rightarrow \\dots \\rightarrow R$ (the obvious map), we get the result by noticing that $R_g= \\text\{colim\}( \\dots \\rightarrow R\\xrightarrow\{g\}R\\xrightarrow\{g\} R)$.\
+\\end\{proof\}\
+\\begin\{cor\} \\label\{Kcor\}\
+If $(f_1,\\dots,f_r)=R$ then the alternating Cech complex is acyclic.\
+\\end\{cor\}\
+\\begin\{proof\}\
+This combines lemma $\\ref\{K1\}$ and $\\ref\{K2\}$.\
+\\end\{proof\}\
+\\end\{document\}}
